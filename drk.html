@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator Umur</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createStar() {
+            const star = document.createElement("div");
+            star.classList.add("star");
+
+            const randomX = Math.random() * window.innerWidth;
+            const randomY = Math.random() * window.innerHeight;
+            
+            star.style.left = `${randomX}px`;
+            star.style.top = `${randomY}px`;
+
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 3000);
+        }
+
+        setInterval(createStar, 200);
+    </script>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Umur </h1>
+        <label for="tanggal_lahir">Tanggal Lahir: </label>
+        <input type="date" id="tanggal_lahir" required><br><br>
+        <button onclick="hitungUmur()">Hitung Umur</button><br><br>
+        <p id="hasil_umur"></p>
+        <p id="mode_waktu"></p>
+    </div>
+    <script>
+        function hitungUmur() {
+            var tanggalLahir = new Date(document.getElementById("tanggal_lahir").value);
+            var hariIni = new Date();
+            var tahunLahir = tanggalLahir.getFullYear();
+            var bulanLahir = tanggalLahir.getMonth();
+            var tanggalLahir = tanggalLahir.getDate();
+            var umur = hariIni.getFullYear() - tahunLahir;
+            if (hariIni.getMonth() < bulanLahir || (hariIni.getMonth() === bulanLahir && hariIni.getDate() < tanggalLahir)) {
+                umur--;
+            }
+            document.getElementById("hasil_umur").innerHTML = "Umur Anda adalah " + umur + " tahun.";
+            var modeCheckbox = document.getElementById("mode_checkbox");
+        }
+    </script>
+</body>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .light-mode {
+      background-color: #053442;
+      color: #fdf8f8;
+    }
+    .dark-mode {
+      background-color: #4b0639;
+      color: #fafbfc;
+    }
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      mask-image: -moz-linear-gradient();
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+    .toggle-label {
+      margin-right: 8px;
+    }
+  </style>
+  <title>Light and Dark Mode Example</title>
+  </head>
+  <body class="light-mode">
+    <h1>Welcome to the counting of agaes</h1>
+    <p>Hitung umur anda disini biar sadar klok sudah tua.</p>
+  
+    <div class="toggle-container">
+      <label class="toggle-label" for="mode-toggle">Toggle Mode</label>
+      <input type="checkbox" id="mode-toggle">
+    </div>
+  
+    <script>
+      const modeToggle = document.getElementById('mode-toggle');
+      const body = document.body;
+  
+      modeToggle.addEventListener('change', () => {
+        if (modeToggle.checked) {
+          body.classList.remove('light-mode');
+          body.classList.add('dark-mode');
+        } else {
+          body.classList.remove('dark-mode');
+          body.classList.add('light-mode');
+        }
+      });
+    </script>
+</body>
+</html>
+    </script>
+</html>
